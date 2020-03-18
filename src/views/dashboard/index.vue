@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils'
+import { formatTime, cache } from '@/utils'
 export default {
-  data () {
+  data() {
     return {
       tableData: null,
       showContent: false,
@@ -40,11 +40,11 @@ export default {
       edit: null
     }
   },
-  created () {
+  created() {
     this.tableData = this.getNoteBook()
   },
   methods: {
-    getNoteBook () {
+    getNoteBook() {
       var arr = []
       var noteStr = localStorage.getItem("notebook")
       if (noteStr) {
@@ -56,15 +56,15 @@ export default {
       })
       return arr
     },
-    setNoteBook (data) {
+    setNoteBook(data) {
       localStorage.setItem("notebook", JSON.stringify(data))
     },
-    onEdit (data) {
+    onEdit(data) {
       this.edit = data
       this.form = { ...data }
       this.showContent = true
     },
-    onDelete (data) {
+    onDelete(data) {
       this.$confirm('是否删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -79,12 +79,12 @@ export default {
         this.setNoteBook(this.tableData)
       })
     },
-    onCreate () {
+    onCreate() {
       this.form = {}
       this.edit = null
       this.showContent = true
     },
-    onSave () {
+    onSave() {
       if (this.form.content) {
         var arr = this.getNoteBook()
         if (this.edit) {
