@@ -17,25 +17,25 @@
 import QRCode from './qrcode-factory.js'
 export default {
   name: 'qrcode',
-  data () {
+  data() {
     return {
       text: '',
       show: false,
       qrcode: null
     }
   },
-  mounted () {
+  mounted() {
     this.qrcode = new QRCode(document.getElementById('qrcode'), {
       text: "",
-      width: 180,
-      height: 180,
+      width: 300,
+      height: 300,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
     });
   },
   methods: {
-    onCreate () {
+    onCreate() {
       if (this.text) {
         this.show = true
         this.qrcode.clear()

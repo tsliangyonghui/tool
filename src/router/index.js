@@ -79,13 +79,20 @@ export const constantRoutes = [
   {
     path: '/transition',
     component: Layout,
+    meta: { title: '转换工具', icon: 'transition', noCache: true },
     redirect: '/transition/index',
     children: [
       {
         path: 'index',
         component: () => import('@/views/time-transition/index'),
         name: 'timeTransition',
-        meta: { title: '时间转换', icon: 'transition', noCache: true }
+        meta: { title: '时间转换', noCache: true }
+      },
+      {
+        path: 'pic-transition',
+        component: () => import('@/views/pic-transition/index'),
+        name: 'picTransition',
+        meta: { title: '图片转换', noCache: true }
       }
     ]
   }
@@ -101,7 +108,7 @@ const createRouter = () => new Router({
 })
 const router = createRouter()
 
-export function resetRouter () {
+export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router
 }
